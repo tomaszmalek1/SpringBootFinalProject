@@ -29,8 +29,8 @@
             Nazwa zabytku: <form:input path="name"/><form:errors path="name" cssClass="errors"/><br>
             Adres www: <form:input path="html"/><form:errors path="html" cssClass="errors"/><br>
             Koszt biletu: <form:input type="number" path="ticketCost"/><form:errors path="ticketCost" cssClass="errors"/><br>
-            Godziny otwarcia: <form:input path="firstOpenHours"/><form:errors path="firstOpenHours" cssClass="errors"/>
-            <form:input path="lastOpenHours"/><form:errors path="lastOpenHours" cssClass="errors"/><br>
+            Godziny otwarcia: <form:input type="time" path="firstOpenHours"/><form:errors path="firstOpenHours" cssClass="errors"/>
+             - <form:input type="time" path="lastOpenHours"/><form:errors path="lastOpenHours" cssClass="errors"/><br>
             Opis: <form:textarea path="description" rows="10" cols="20"/><form:errors path="description" cssClass="errors"/><br>
 
             <input type="submit" value="Dodaj">

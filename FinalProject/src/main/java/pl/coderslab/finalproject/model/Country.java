@@ -1,7 +1,12 @@
 package pl.coderslab.finalproject.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "countries")
@@ -11,10 +16,14 @@ public class Country {
     private long id;
     @NotBlank(message = "Wartość nie może być pusta!")
     private String name;
-    @NotBlank(message = "Wartość nie może być pusta!")
-    private String firstDate;
-    @NotBlank(message = "Wartość nie może być pusta!")
-    private String lastDate;
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Future
+    private LocalDate firstDate;
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Future
+    private LocalDate lastDate;
     @ManyToOne
     private User user;
 
@@ -26,7 +35,7 @@ public class Country {
         this.user = user;
     }
 
-    public Country(long id, String name, String firstDate, String lastDate, Long userId) {
+    public Country(long id, String name, LocalDate firstDate, LocalDate lastDate, Long userId) {
         this.id = id;
         this.name = name;
         this.firstDate = firstDate;
@@ -53,19 +62,19 @@ public class Country {
         this.name = name;
     }
 
-    public String getFirstDate() {
+    public LocalDate getFirstDate() {
         return firstDate;
     }
 
-    public void setFirstDate(String firstDate) {
+    public void setFirstDate(LocalDate firstDate) {
         this.firstDate = firstDate;
     }
 
-    public String getLastDate() {
+    public LocalDate getLastDate() {
         return lastDate;
     }
 
-    public void setLastDate(String lastDate) {
+    public void setLastDate(LocalDate lastDate) {
         this.lastDate = lastDate;
     }
 }

@@ -28,7 +28,7 @@
         <form:form method="post" modelAttribute="country">
             Kraj <form:input path="name"/><form:errors path="name" cssClass="errors"/><br>
             Data od: <form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/><br>
-            Data do: <form:input type="date" path="lastDate"/><form:errors path="lastDate" cssClass="errors"/><br>
+            Data do: <form:input type="date" path="lastDate"/><form:errors path="lastDate" cssClass="errors"/>${localDateIsBefore}<br>
             <input type="submit" value="Dodaj">
         </form:form>
     </div>

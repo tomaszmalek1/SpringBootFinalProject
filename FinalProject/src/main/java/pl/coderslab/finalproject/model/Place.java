@@ -1,7 +1,14 @@
 package pl.coderslab.finalproject.model;
 
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "places")
@@ -13,8 +20,10 @@ public class Place {
     private String description;
     private String html;
     private int ticketCost;
-    private String firstOpenHours;
-    private String lastOpenHours;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime firstOpenHours;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime lastOpenHours;
     @ManyToOne
     private City city;
     @ManyToOne
@@ -23,7 +32,7 @@ public class Place {
     @ManyToOne
     private Country country;
 
-    public Place(long id, String name, String description, String html, int ticketCost, String firstOpenHours, String lastOpenHours, City cityId, User userId, Country countryId) {
+    public Place(long id, String name, String description, String html, int ticketCost, LocalTime firstOpenHours, LocalTime lastOpenHours, City cityId, User userId, Country countryId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -79,19 +88,19 @@ public class Place {
         this.ticketCost = ticketCost;
     }
 
-    public String getFirstOpenHours() {
+    public LocalTime getFirstOpenHours() {
         return firstOpenHours;
     }
 
-    public void setFirstOpenHours(String firstOpenHours) {
+    public void setFirstOpenHours(LocalTime firstOpenHours) {
         this.firstOpenHours = firstOpenHours;
     }
 
-    public String getLastOpenHours() {
+    public LocalTime getLastOpenHours() {
         return lastOpenHours;
     }
 
-    public void setLastOpenHours(String lastOpenHours) {
+    public void setLastOpenHours(LocalTime lastOpenHours) {
         this.lastOpenHours = lastOpenHours;
     }
 
