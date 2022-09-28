@@ -7,6 +7,7 @@ import pl.coderslab.finalproject.model.Country;
 import pl.coderslab.finalproject.repository.CountryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Primary
@@ -25,6 +26,23 @@ public class JpaCountryService implements CountryService {
     @Override
     public List<Country> get() {
         return countryRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        countryRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Country> get(Long id) {
+        return countryRepository.findById(id);
+    }
+
+    @Override
+    public void update(Country country) {
+        if (get(country.getId()).isPresent()) {
+            countryRepository.save(country);
+        }
     }
 
 }

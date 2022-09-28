@@ -28,7 +28,6 @@ public class Place {
     private City city;
     @ManyToOne
     private User user;
-
     @ManyToOne
     private Country country;
 

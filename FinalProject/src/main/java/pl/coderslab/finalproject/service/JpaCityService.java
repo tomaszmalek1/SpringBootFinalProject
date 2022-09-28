@@ -29,4 +29,21 @@ public class JpaCityService implements CityService {
         return cityRepository.findAll();
     }
 
+    @Override
+    public void delete(Long id) {
+        cityRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<City> get(Long id) {
+        return cityRepository.findById(id);
+    }
+
+    @Override
+    public void update(City city) {
+        if (get(city.getId()).isPresent()) {
+            cityRepository.save(city);
+        }
+    }
+
 }

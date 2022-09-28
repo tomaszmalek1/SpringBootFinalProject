@@ -27,6 +27,7 @@ public class Country {
     @ManyToOne
     private User user;
 
+
     public User getUser() {
         return user;
     }
