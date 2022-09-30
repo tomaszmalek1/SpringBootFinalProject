@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trip planner</title>
@@ -22,18 +23,12 @@
         </ul>
     </div>
     <div id="header_main">
-        Najbliższa zaplanowana Podróż:<br>
-        Witaj użytkowniku nr ${userSession}
-        <div>
-            <ul>
-                <li><a href="/app/addCountry">Dodaj Państwo</a></li>
-                <li><a href="/app/addCity">Dodaj Miasto</a></li>
-                <li><a href="/app/addPlace">Dodaj Miejsce</a></li>
-                <li><a href="/app/addPlan">Utwórz plan</a></li>
-                <li><a href="/app/addToPlan">Dodaj do planu</a></li>
-            </ul>
-        </div>
-
+        Formularz do planwania:
+        <%--@elvariable id="plan" type=""--%>
+        <form:form method="post" modelAttribute="plan">
+            Opis planu <form:input path="description"/><form:errors path="description" cssClass="errors"/><br>
+            <input type="submit" value="Dodaj">
+        </form:form>
     </div>
     <div id="boxy">
         <div id="boxy_box_1">
