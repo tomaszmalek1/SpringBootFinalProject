@@ -3,31 +3,61 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Trip planner</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
 </head>
 <body>
 <div id="container">
+
     <div id="header_logo">
         <a href="/home"><img src="/images/logo.png" alt="Logo"/></a>
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="/registry">Rejestracja</a></li>
-            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
+            <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
-    <div id="login">
-        <form:form method="post" modelAttribute="user">
-            Imię: <form:input path="firstName"/><form:errors path="firstName" cssClass="errors"/><br>
-            Nazwisko: <form:input path="lastName"/><form:errors path="lastName" cssClass="errors"/><br>
-            E-mail: <form:input path="email"/><form:errors path="email" cssClass="errors"/><br>
-            Hasło: <form:password path="password"/><form:errors path="password" cssClass="errors"/><br>
-            <input type="submit" value="Zarejestruj">
+    <div id="header_main">
+        <%--@elvariable id="cityUpdate" type=""--%>
+        <form:form method="post" modelAttribute="cityUpdate">
+            <form:hidden path="country.id"/>
+            <table>
+                <tr>
+                    <th>Miasto</th>
+                    <td><form:input path="name"/><form:errors path="name" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Data przyjazdu</th>
+                    <td><form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Data wyjazdu</th>
+                    <td><form:input type="date" path="lastDate"/><form:errors path="lastDate"
+                                                                              cssClass="errors"/>${dateMessage}</td>
+                </tr>
+                <tr>
+                    <th>Koszt dojazdu do miasta</th>
+                    <td><form:input type="number" path="arrivalCost"/><form:errors path="arrivalCost"
+                                                                                   cssClass="errors"/>${numberFormatException}</td>
+                </tr>
+                <tr>
+                    <th>Koszt dziennego wyżywienia</th>
+                    <td><form:input type="number" path="oneDayFoodCost"/><form:errors path="oneDayFoodCost"
+                                                                                      cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Koszt jednego noclegu</th>
+                    <td><form:input type="number" path="sleepingCost"/><form:errors path="sleepingCost"
+                                                                                    cssClass="errors"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Edytuj">
         </form:form>
     </div>
     <div id="boxy">

@@ -14,23 +14,51 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
     <div id="header_main">
         <form:form method="post" modelAttribute="city">
-            Panstwo: <form:select itemValue="id" itemLabel="name" path="country.id" items="${allCountries}"/><br>
-            Nazwa Miasta: <form:input path="name"/><form:errors path="name" cssClass="errors"/><br>
-            Data przyjazdu: <form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/><br>
-            Koszt Podróży do tego miasta: <form:input type="number" path="arrivalCost"/><form:errors path="arrivalCost" cssClass="errors"/><br>
-            Data Wyjazdu: <form:input type="date" path="lastDate"/><form:errors path="lastDate" cssClass="errors"/><br>
-            Koszt dziennego wyżywienia: <form:input type="number" path="oneDayFoodCost"/><form:errors path="oneDayFoodCost" cssClass="errors"/><br>
-            Koszt noclegu: <form:input type="number" path="sleepingCost"/><form:errors path="sleepingCost" cssClass="errors"/><br>
+            <table>
+                <tr>
+                    <th>Państwo</th>
+                    <td><form:select itemValue="id" itemLabel="name" path="country.id" items="${allCountries}"/></td>
+                </tr>
+                <tr>
+                    <th>Miasto</th>
+                    <td><form:input path="name"/><form:errors path="name" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Data przyjazdu</th>
+                    <td><form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Data wyjazdu</th>
+                    <td><form:input type="date" path="lastDate"/><form:errors path="lastDate"
+                                                                              cssClass="errors"/>${dateMessage}</td>
+                </tr>
+                <tr>
+                    <th>Koszt dojazdu do miasta</th>
+                    <td><form:input type="number" path="arrivalCost"/><form:errors path="arrivalCost"
+                                                                                   cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Koszt dziennego wyżywienia</th>
+                    <td><form:input type="number" path="oneDayFoodCost"/><form:errors path="oneDayFoodCost"
+                                                                                      cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Koszt jednego noclegu</th>
+                    <td><form:input type="number" path="sleepingCost"/><form:errors path="sleepingCost"
+                                                                                    cssClass="errors"/></td>
+                </tr>
+            </table>
             <input type="submit" value="Dodaj">
         </form:form>
     </div>

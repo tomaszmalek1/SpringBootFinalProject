@@ -1,15 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trip planner</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <style>
-        form{
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div id="container">
@@ -19,22 +13,43 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="/registry">Rejestracja</a></li>
-            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
+            <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
-    <div id="login">
-        <form method="post">
-            <label for="email">E-mail: </label>
-            <input id="email" type="text" name="email"/><br>
-            <label for="password">Hasło: </label>
-            <input id="password" type="password" name="password"/><br>
-            <input type="submit" value="Zaloguj"/>
-        </form>
-        ${message}<br>
+    <div id="header_main">
+        <table>
+            <tr>
+                <th>Nazwa planu</th>
+                <th>Data</th>
+                <th>Całkowity koszt planu</th>
+            </tr>
+            <tr>
+                <td>${planDetails.description}</td>
+                <td>od ${planDetails.firstDate} do ${planDetails.lastDate}</td>
+                <td>${finalCost} zł</td>
+            </tr>
+        </table><br>
+        <c:forEach items="${planDetails.countryList}" var="country">
+            <ul>
+                <li><c:out value="${country.name}"/><a href="/app/countryUpdate/${country.id}"> -> Edytuj, </a><a href="/app/countryDelete/${country.id}">Usuń</a><br></li>
+                <c:forEach items="${country.cityList}" var="city">
+                    <ul>
+                        <li><c:out value="${city.name}"/><a href="/app/cityUpdate/${city.id}"> -> Edytuj, </a><a href="/app/cityDelete/${city.id}">Usuń, </a><a href="/app/cityDetails/${city.id}">Szczegóły</a><br></li>
+                        <c:forEach items="${city.placeList}" var="place">
+                            <ul>
+                                <li><c:out value="${place.name}"/><a href="/app/placeUpdate/${place.id}"> -> Edytuj, </a><a href="/app/placeDelete/${place.id}">Usuń, </a><a href="/app/placeDetails/${place.id}">Szczegóły</a><br></li>
+                            </ul>
+                        </c:forEach>
+                    </ul>
+                </c:forEach>
+            </ul>
+        </c:forEach>
     </div>
     <div id="boxy">
         <div id="boxy_box_1">

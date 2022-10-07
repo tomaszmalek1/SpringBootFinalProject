@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Trip planner</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
 <div id="container">
@@ -21,6 +21,7 @@
         </ul>
     </div>
     <div id="header_main">
+        Witamy na stronie do planowania wycieczek<br>
         <div id="header_main_image">
             <div id="header_main_text"></div>
         </div>

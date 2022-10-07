@@ -3,37 +3,40 @@
 <html>
 <head>
     <title>Trip planner</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
 <div id="container">
-
     <div id="header_logo">
         <a href="/home"><img src="/images/logo.png" alt="Logo"/></a>
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
     <div id="header_main">
-        Najbliższa zaplanowana Podróż:<br>
-        Witaj użytkowniku nr ${userSession}
-        <div>
-            <ul>
-                <li><a href="/app/addCountry">Dodaj Państwo</a></li>
-                <li><a href="/app/addCity">Dodaj Miasto</a></li>
-                <li><a href="/app/addPlace">Dodaj Miejsce</a></li>
-                <li><a href="/app/addPlan">Utwórz plan</a></li>
-                <li><a href="/app/addToPlan">Dodaj do planu</a></li>
-            </ul>
-        </div>
-
+        Najbliższy plan:<br>
+        <table>
+            <tr>
+                <th>Nazwa planu</th>
+                <th>Data Wyjazdu</th>
+                <th>Do wyjazdu pozostało dni</th>
+                <th>Koszt planu</th>
+            </tr>
+            <tr>
+                <td><c:out value="${firstPlan.description}${planException}"/></td>
+                <td><c:out value="${firstPlan.firstDate}${planException}"/></td>
+                <td><c:out value="${daysToTrip}${planException}"/></td>
+                <td><c:out value="${finalCost}${planException}"/> zł</td>
+            </tr>
+        </table>
     </div>
     <div id="boxy">
         <div id="boxy_box_1">

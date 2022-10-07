@@ -1,5 +1,6 @@
 package pl.coderslab.finalproject.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import pl.coderslab.finalproject.model.User;
@@ -32,5 +33,17 @@ public class JpaUserService implements UserService {
         return userRepository.findById(id);
     }
 
+    @Override
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 
+    @Override
+    public boolean checkPassword(String candidate, String hashed) {
+        if (BCrypt.checkpw(candidate, hashed)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

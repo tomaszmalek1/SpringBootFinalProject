@@ -3,10 +3,9 @@ package pl.coderslab.finalproject.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "cities")
@@ -14,34 +13,37 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Wartość nie może być pusta!")
+    @NotBlank(message = " Wartość nie może być pusta")
     private String name;
-    @NotNull
+    @NotNull(message = " Wartość nie może być pusta")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Future
     private LocalDate firstDate;
-    private int arrivalCost;
-    @NotNull
+    @NotNull(message = " Wartość nie może być pusta")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Future
     private LocalDate lastDate;
+    @NotNull(message = " Wartość nie może być pusta")
+    private int arrivalCost;
+    @NotNull(message = " Wartość nie może być pusta")
     private int sleepingCost;
+    @NotNull(message = " Wartość nie może być pusta")
     private int oneDayFoodCost;
-
     @ManyToOne
     private Country country;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.REMOVE)
+    private List<Place> placeList;
 
-    @ManyToOne
-    private User user;
-
-    public City(long id, String name, LocalDate firstDate, int arrivalCost, LocalDate lastDate, int sleepingCost, int oneDayFoodCost) {
+    public City(long id, String name, LocalDate firstDate, LocalDate lastDate, int arrivalCost, int sleepingCost, int oneDayFoodCost, Country country, List<Place> placeList) {
         this.id = id;
         this.name = name;
         this.firstDate = firstDate;
-        this.arrivalCost = arrivalCost;
         this.lastDate = lastDate;
+        this.arrivalCost = arrivalCost;
         this.sleepingCost = sleepingCost;
         this.oneDayFoodCost = oneDayFoodCost;
+        this.country = country;
+        this.placeList = placeList;
     }
 
     public City() {
@@ -71,14 +73,6 @@ public class City {
         this.firstDate = firstDate;
     }
 
-    public int getArrivalCost() {
-        return arrivalCost;
-    }
-
-    public void setArrivalCost(int arrivalCost) {
-        this.arrivalCost = arrivalCost;
-    }
-
     public LocalDate getLastDate() {
         return lastDate;
     }
@@ -87,20 +81,12 @@ public class City {
         this.lastDate = lastDate;
     }
 
-    public Country getCountry() {
-        return country;
+    public int getArrivalCost() {
+        return arrivalCost;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setArrivalCost(int arrivalCost) {
+        this.arrivalCost = arrivalCost;
     }
 
     public int getSleepingCost() {
@@ -117,5 +103,21 @@ public class City {
 
     public void setOneDayFoodCost(int oneDayFoodCost) {
         this.oneDayFoodCost = oneDayFoodCost;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<Place> getPlaceList() {
+        return placeList;
+    }
+
+    public void setPlaceList(List<Place> placeList) {
+        this.placeList = placeList;
     }
 }

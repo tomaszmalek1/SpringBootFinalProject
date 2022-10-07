@@ -3,7 +3,6 @@ package pl.coderslab.finalproject.service;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import pl.coderslab.finalproject.model.City;
-import pl.coderslab.finalproject.model.Country;
 import pl.coderslab.finalproject.repository.CityRepository;
 
 import java.util.List;
@@ -37,13 +36,6 @@ public class JpaCityService implements CityService {
     @Override
     public Optional<City> get(Long id) {
         return cityRepository.findById(id);
-    }
-
-    @Override
-    public void update(City city) {
-        if (get(city.getId()).isPresent()) {
-            cityRepository.save(city);
-        }
     }
 
 }

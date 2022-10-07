@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface CountryRepository extends JpaRepository<Country, Long> {
-    @Query("select c from Country c where c.user.id = ?1")
+    @Query("select c from Country c where c.plan.user.id = ?1")
     List<Country> findCountryByUserId(Long userId);
+
 }

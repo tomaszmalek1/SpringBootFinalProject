@@ -14,25 +14,45 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
     <div id="header_main">
+        <%--@elvariable id="place" type=""--%>
         <form:form method="post" modelAttribute="place">
-<%--            Panstwo: <form:select itemValue="id" itemLabel="name" path="country.id" items="${allCountries}"/><br>--%>
-            Miasto: <form:select itemValue="id" itemLabel="name" path="city.id" items="${allCities}"/><br>
-            Nazwa zabytku: <form:input path="name"/><form:errors path="name" cssClass="errors"/><br>
-            Adres www: <form:input path="html"/><form:errors path="html" cssClass="errors"/><br>
-            Koszt biletu: <form:input type="number" path="ticketCost"/><form:errors path="ticketCost" cssClass="errors"/><br>
-            Godziny otwarcia: <form:input type="time" path="firstOpenHours"/><form:errors path="firstOpenHours" cssClass="errors"/>
-             - <form:input type="time" path="lastOpenHours"/><form:errors path="lastOpenHours" cssClass="errors"/><br>
-            Opis: <form:textarea path="description" rows="10" cols="20"/><form:errors path="description" cssClass="errors"/><br>
-
+            <table>
+                <tr>
+                    <th>Miasto</th>
+                    <td><form:select itemValue="id" itemLabel="name" path="city.id" items="${allCities}"/></td>
+                </tr>
+                <tr>
+                    <th>Nazwa zabytku</th>
+                    <td><form:input path="name"/><form:errors path="name" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Adres www</th>
+                    <td><form:input path="html"/><form:errors path="html" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Koszt biletu</th>
+                    <td><form:input type="number" path="ticketCost"/><form:errors path="ticketCost" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Godziny otwarcia</th>
+                    <td><form:input type="time" path="firstOpenHours"/><form:errors path="firstOpenHours" cssClass="errors"/>
+                        - <form:input type="time" path="lastOpenHours"/><form:errors path="lastOpenHours" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Opis</th>
+                    <td><form:textarea path="description" rows="10" cols="20"/><form:errors path="description" cssClass="errors"/></td>
+                </tr>
+            </table>
             <input type="submit" value="Dodaj">
         </form:form>
     </div>

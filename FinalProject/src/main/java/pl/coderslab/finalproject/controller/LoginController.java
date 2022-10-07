@@ -28,9 +28,9 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, Model model) {
         for (User user : userService.get()) {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+            if (user.getEmail().equals(email) && userService.checkPassword(password, user.getPassword())) {
                 model.addAttribute("userSession", user);
-                return "redirect:/app/userHomePage"; // widok dostępny po zalogowaniu
+                return "redirect:/app/userHomePage";
             }
         }
         model.addAttribute("message", "Bledny login lub haslo!");

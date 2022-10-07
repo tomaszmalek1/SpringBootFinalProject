@@ -1,6 +1,5 @@
 package pl.coderslab.finalproject.service;
 
-import pl.coderslab.finalproject.model.Place;
 import pl.coderslab.finalproject.model.Plan;
 
 import java.util.List;
@@ -14,4 +13,5 @@ public interface PlanService {
     void delete(Long id);
 
     Optional<Plan> get(Long id);
+
 }

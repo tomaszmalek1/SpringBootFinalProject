@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trip planner</title>
@@ -14,22 +13,24 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
-<%--    <div id="header_main">--%>
-<%--        &lt;%&ndash;@elvariable id="addToPlan" type=""&ndash;%&gt;--%>
-<%--        <form:form method="post" modelAttribute="addToPlan">--%>
-<%--            Panstwo: <form:select itemValue="id" itemLabel="name" path="country.id" items="${allCountries}"/><br>--%>
-<%--            Opis:<form:input path="description"/><form:errors path="description" cssClass="errors"/><br>--%>
-<%--            <input type="submit" value="Dodaj">--%>
-<%--        </form:form>--%>
-<%--    </div>--%>
+    <div id="header_main">
+        <table>
+            <tr>
+                <td><a href="/app/addCountry">Dodaj Państwo</a></td>
+                <td><a href="/app/addCity">Dodaj Miasto</a></td>
+                <td><a href="/app/addPlace">Dodaj Miejsce</a></td>
+            </tr>
+        </table>
+    </div>
     <div id="boxy">
         <div id="boxy_box_1">
             <h2>Lorem ipsum</h2>
@@ -65,4 +66,3 @@
 </div>
 </body>
 </html>
-

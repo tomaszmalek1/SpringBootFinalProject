@@ -14,19 +14,33 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
     <div id="header_main">
-        Formularz do planwania:
+        Formularz do planwania:<br>
         <%--@elvariable id="plan" type=""--%>
         <form:form method="post" modelAttribute="plan">
-            Opis planu <form:input path="description"/><form:errors path="description" cssClass="errors"/><br>
+            <table>
+                <tr>
+                    <th>Data od: </th>
+                    <td><form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Data do:</th>
+                    <td><form:input type="date" path="lastDate"/><form:errors path="lastDate" cssClass="errors"/>${dateMessage}</td>
+                </tr>
+                <tr>
+                    <th>Nazwa Planu:</th>
+                    <td><form:input type="text" path="description"/><form:errors path="description" cssClass="errors"/></td>
+                </tr>
+            </table>
             <input type="submit" value="Dodaj">
         </form:form>
     </div>

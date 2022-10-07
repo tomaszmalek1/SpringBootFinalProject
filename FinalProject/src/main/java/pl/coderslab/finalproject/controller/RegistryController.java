@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.finalproject.model.User;
-import pl.coderslab.finalproject.service.CountryService;
 import pl.coderslab.finalproject.service.UserService;
 
 import javax.validation.Valid;
@@ -15,7 +14,7 @@ import javax.validation.Valid;
 public class RegistryController {
     private final UserService userService;
 
-    public RegistryController(UserService userService, CountryService countryService) {
+    public RegistryController(UserService userService) {
         this.userService = userService;
     }
     @GetMapping("/registry")
@@ -29,6 +28,7 @@ public class RegistryController {
         if (result.hasErrors()) {
             return "home/registry";
         }
+        user.setPassword(userService.hashPassword(user.getPassword()));
         userService.add(user);
         return "redirect:/login";
     }

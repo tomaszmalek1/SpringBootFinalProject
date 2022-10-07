@@ -2,7 +2,6 @@ package pl.coderslab.finalproject.service;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import pl.coderslab.finalproject.model.City;
 import pl.coderslab.finalproject.model.Country;
 import pl.coderslab.finalproject.repository.CountryRepository;
 
@@ -37,12 +36,4 @@ public class JpaCountryService implements CountryService {
     public Optional<Country> get(Long id) {
         return countryRepository.findById(id);
     }
-
-    @Override
-    public void update(Country country) {
-        if (get(country.getId()).isPresent()) {
-            countryRepository.save(country);
-        }
-    }
-
 }

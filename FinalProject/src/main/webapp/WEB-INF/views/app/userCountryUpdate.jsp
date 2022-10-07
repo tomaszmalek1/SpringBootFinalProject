@@ -5,11 +5,6 @@
 <head>
     <title>Trip planner</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <style>
-        form{
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div id="container">
@@ -19,22 +14,30 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="/registry">Rejestracja</a></li>
-            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
+            <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
-    <div id="login">
-        <form method="post">
-            <label for="email">E-mail: </label>
-            <input id="email" type="text" name="email"/><br>
-            <label for="password">Hasło: </label>
-            <input id="password" type="password" name="password"/><br>
-            <input type="submit" value="Zaloguj"/>
-        </form>
-        ${message}<br>
+    <div id="header_main">
+        <%--@elvariable id="countryUpdate" type=""--%>
+        <form:form method="post" modelAttribute="countryUpdate">
+            <table>
+                <tr>
+                    <th>Kraj </th>
+                    <td><form:input path="name"/><form:errors path="name" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Plan</th>
+                    <td><form:select itemValue="id" itemLabel="description" path="plan.id" items="${planList}"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Edytuj">
+        </form:form>
     </div>
     <div id="boxy">
         <div id="boxy_box_1">

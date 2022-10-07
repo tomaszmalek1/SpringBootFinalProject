@@ -1,13 +1,11 @@
 package pl.coderslab.finalproject.model;
 
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import javax.validation.constraints.Pattern;
 import java.time.LocalTime;
 
 @Entity
@@ -16,22 +14,24 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank(message = "Podaj nazwę zabytku")
     private String name;
+    @NotBlank(message = "Opis nie może być pusty")
     private String description;
+    @Pattern(regexp = "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})", message = "Podana wartość nie jest adresem strony internetowej")
     private String html;
+    @NotNull(message = "Uzupełnij cenę biletu")
     private int ticketCost;
+    @NotNull(message = "Podaj godzinę otwarcia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime firstOpenHours;
+    @NotNull(message = "Podaj godzinę zamknięcia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime lastOpenHours;
     @ManyToOne
     private City city;
-    @ManyToOne
-    private User user;
-    @ManyToOne
-    private Country country;
 
-    public Place(long id, String name, String description, String html, int ticketCost, LocalTime firstOpenHours, LocalTime lastOpenHours, City cityId, User userId, Country countryId) {
+    public Place(long id, String name, String description, String html, int ticketCost, LocalTime firstOpenHours, LocalTime lastOpenHours) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,9 +39,6 @@ public class Place {
         this.ticketCost = ticketCost;
         this.firstOpenHours = firstOpenHours;
         this.lastOpenHours = lastOpenHours;
-        this.city = cityId;
-        this.user = userId;
-        this.country = countryId;
     }
 
     public Place() {
@@ -109,21 +106,5 @@ public class Place {
 
     public void setCity(City city) {
         this.city = city;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
     }
 }

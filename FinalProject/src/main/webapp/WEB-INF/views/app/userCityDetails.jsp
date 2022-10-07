@@ -1,15 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trip planner</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <style>
-        form{
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div id="container">
@@ -19,22 +13,43 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="/registry">Rejestracja</a></li>
-            <li><a href="/login">Logowanie</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
+            <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
-    <div id="login">
-        <form method="post">
-            <label for="email">E-mail: </label>
-            <input id="email" type="text" name="email"/><br>
-            <label for="password">Hasło: </label>
-            <input id="password" type="password" name="password"/><br>
-            <input type="submit" value="Zaloguj"/>
-        </form>
-        ${message}<br>
+    <div id="header_main">
+        <table>
+            <tr>
+                <th>Nazwa</th>
+                <td>${cityDetails.get().getName()}</td>
+            </tr>
+            <tr>
+                <th>Termin</th>
+                <td>od ${cityDetails.get().getFirstDate()} do ${cityDetails.get().getLastDate()}</td>
+            </tr>
+            <tr>
+                <th>Koszt dojazdu</th>
+                <td>${cityDetails.get().getArrivalCost()} zł</td>
+            </tr>
+            <tr>
+                <th>Koszt dziennego wyżywienia</th>
+                <td>${cityDetails.get().getOneDayFoodCost()} zł</td>
+            </tr>
+            <tr>
+                <th>Koszt noclegu</th>
+                <td>${cityDetails.get().getSleepingCost()} zł</td>
+            </tr>
+            <tr>
+                <th>Całkowity koszt pobytu w mieście</th>
+                <td>${cityCost} zł</td>
+            </tr>
+        </table>
+        <a href="javascript:history.back()">Powrót</a>
     </div>
     <div id="boxy">
         <div id="boxy_box_1">

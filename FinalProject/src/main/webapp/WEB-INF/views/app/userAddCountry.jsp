@@ -14,21 +14,28 @@
     </div>
     <div id="header_menu">
         <ul>
-            <li><a href="/home">Strona główna</a></li>
+            <li><a href="/app/userHomePage">Strona główna</a></li>
             <li><a href="#">O nas</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Edytuj</a></li>
-            <li><a href="#">Usuń</a></li>
+            <li><a href="/app/addPlan">Utwórz plan</a></li>
+            <li><a href="/app/planList">Lista planów</a></li>
+            <li><a href="/app/addToPlan">Dodaj do planu</a></li>
             <li><a href="/app/logout">Wyloguj</a></li>
         </ul>
     </div>
     <div id="header_main">
-        Formularz do planwania:
         <%--@elvariable id="country" type=""--%>
         <form:form method="post" modelAttribute="country">
-            Kraj <form:input path="name"/><form:errors path="name" cssClass="errors"/><br>
-            Data od: <form:input type="date" path="firstDate"/><form:errors path="firstDate" cssClass="errors"/><br>
-            Data do: <form:input type="date" path="lastDate"/><form:errors path="lastDate" cssClass="errors"/>${localDateIsBefore}<br>
+            <table>
+                <tr>
+                    <th>Kraj </th>
+                    <td><form:input path="name"/><form:errors path="name" cssClass="errors"/></td>
+                </tr>
+                <tr>
+                    <th>Plan</th>
+                    <td><form:select itemValue="id" itemLabel="description" path="plan.id" items="${planList}"/></td>
+                </tr>
+            </table>
             <input type="submit" value="Dodaj">
         </form:form>
     </div>
